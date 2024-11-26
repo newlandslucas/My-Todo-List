@@ -24,6 +24,16 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                
+                HStack {
+                    Text("Minha Lista de\nTarefas")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                .padding()
+                
                 // Lista de tarefas
                 List {
                     ForEach(todoItems) { item in
@@ -66,7 +76,6 @@ struct HomeView: View {
                 .padding(.top)
                 
             }
-            .navigationBarTitle("Minha lista")
             .navigationBarItems(trailing: EditButton())
             .overlay(
                 Button(action: {
