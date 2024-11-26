@@ -51,8 +51,8 @@
 		943BBBD02CF65391000F8DAD /* MyTodoList */ = {
 			isa = PBXGroup;
 			children = (
-				943BBBD12CF65391000F8DAD /* MyTodoListApp.swift */,
-				943BBBD32CF65391000F8DAD /* ContentView.swift */,
+				943BBBE02CF653AA000F8DAD /* Core */,
+				943BBBDF2CF653A6000F8DAD /* App */,
 				943BBBD52CF65392000F8DAD /* Assets.xcassets */,
 				943BBBD72CF65392000F8DAD /* Preview Content */,
 			);
@@ -65,6 +65,62 @@
 				943BBBD82CF65392000F8DAD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		943BBBDF2CF653A6000F8DAD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				943BBBD12CF65391000F8DAD /* MyTodoListApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		943BBBE02CF653AA000F8DAD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				943BBBE42CF65403000F8DAD /* Authentication */,
+				943BBBE32CF653CF000F8DAD /* Root */,
+				943BBBE22CF653C5000F8DAD /* Home */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		943BBBE22CF653C5000F8DAD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		943BBBE32CF653CF000F8DAD /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				943BBBD32CF65391000F8DAD /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		943BBBE42CF65403000F8DAD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				943BBBE62CF65412000F8DAD /* Views */,
+				943BBBE52CF6540E000F8DAD /* Custom */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		943BBBE52CF6540E000F8DAD /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		943BBBE62CF65412000F8DAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
