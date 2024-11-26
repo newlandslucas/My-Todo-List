@@ -81,11 +81,11 @@ struct HomeView: View {
                 Button(action: {
                     showModal = true // Exibir o modal
                 }) {
-                    Text("+")
-                        .font(.system(size: 40))
+                    Image(systemName: "pencil")
+                        .font(.system(size: 30))
                         .foregroundColor(.white)
                         .frame(width: 60, height: 60)
-                        .background(Circle().fill(Color.blue))
+                        .background(Circle().fill(Color.black))
                         .shadow(radius: 10)
                 }
                 .padding()
