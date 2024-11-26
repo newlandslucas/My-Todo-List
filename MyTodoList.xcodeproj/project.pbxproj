@@ -11,6 +11,10 @@
 		943BBBD42CF65391000F8DAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BBBD32CF65391000F8DAD /* ContentView.swift */; };
 		943BBBD62CF65392000F8DAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943BBBD52CF65392000F8DAD /* Assets.xcassets */; };
 		943BBBD92CF65392000F8DAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943BBBD82CF65392000F8DAD /* Preview Assets.xcassets */; };
+		943BBBE82CF6547D000F8DAD /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BBBE72CF6547D000F8DAD /* CustomTextFields.swift */; };
+		943BBBEA2CF6549C000F8DAD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BBBE92CF6549C000F8DAD /* LoginView.swift */; };
+		943BBBEC2CF654F4000F8DAD /* AcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BBBEB2CF654F4000F8DAD /* AcessView.swift */; };
+		943BBBEE2CF65518000F8DAD /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BBBED2CF65518000F8DAD /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		943BBBD32CF65391000F8DAD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		943BBBD52CF65392000F8DAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		943BBBD82CF65392000F8DAD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		943BBBE72CF6547D000F8DAD /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
+		943BBBE92CF6549C000F8DAD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		943BBBEB2CF654F4000F8DAD /* AcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcessView.swift; sourceTree = "<group>"; };
+		943BBBED2CF65518000F8DAD /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,7 @@
 		943BBBE52CF6540E000F8DAD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				943BBBE72CF6547D000F8DAD /* CustomTextFields.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -119,6 +128,9 @@
 		943BBBE62CF65412000F8DAD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				943BBBE92CF6549C000F8DAD /* LoginView.swift */,
+				943BBBEB2CF654F4000F8DAD /* AcessView.swift */,
+				943BBBED2CF65518000F8DAD /* RegistrationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,7 +205,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				943BBBE82CF6547D000F8DAD /* CustomTextFields.swift in Sources */,
 				943BBBD42CF65391000F8DAD /* ContentView.swift in Sources */,
+				943BBBEA2CF6549C000F8DAD /* LoginView.swift in Sources */,
+				943BBBEE2CF65518000F8DAD /* RegistrationView.swift in Sources */,
+				943BBBEC2CF654F4000F8DAD /* AcessView.swift in Sources */,
 				943BBBD22CF65391000F8DAD /* MyTodoListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
