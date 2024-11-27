@@ -26,7 +26,7 @@ struct HomeView: View {
             VStack {
                 
                 HStack {
-                    Text("Minha Lista de\nTarefas")
+                    Text("Minha Tarefas")
                         .font(.title)
                         .fontWeight(.semibold)
                     

@@ -24,13 +24,10 @@ struct ModalView: View {
                 Spacer()
             }
             
-            Spacer()
-            
-            // Campo de texto para digitar a tarefa
-            TextField("Digite a tarefa", text: $newTask)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Escreva sua nota...", text: $newTask)
                 .padding()
-                .frame(height: 50)
+                .background(Color.gray.opacity(0.2).cornerRadius(10))
+                .foregroundColor(.black)
             
             // Seletor de prioridade
             VStack(alignment: .leading) {
@@ -59,11 +56,12 @@ struct ModalView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(Color.black)
                     .cornerRadius(8)
             }
             .padding(.horizontal, 10)
-                        
+            .disabled(newTask.isEmpty)  // Desabilita o botão quando o campo de texto estiver vazio
+            
             // Botão "Cancelar"
             Button(action: {
                 showModal = false // Fecha o modal sem salvar
