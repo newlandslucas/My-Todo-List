@@ -15,13 +15,13 @@ struct ContentView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            Text("SettingsView")
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Ajustes")
             }
         }
-        .accentColor(.black)
+        .accentColor(Color(.label))
     }
 }
 

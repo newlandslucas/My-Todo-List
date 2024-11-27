@@ -13,6 +13,8 @@ struct ModalView: View {
     @Binding var showModal: Bool
     var addTask: (String, String) -> Void  // Função para adicionar a tarefa com prioridade
     
+    @State private var showAlert: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -36,8 +38,8 @@ struct ModalView: View {
                     .padding(.top, 20)
                 
                 Picker("Selecione a prioridade", selection: $newPriority) {
-                    Text("Tranquilo").tag("Tranquilo")
-                    Text("Médio").tag("Médio")
+                    Text("Baixa").tag("Baixa")
+                    Text("Média").tag("Média")
                     Text("Requer Atenção").tag("Requer Atenção")
                 }
                 .pickerStyle(SegmentedPickerStyle()) // Estilo de picker segmentado
@@ -48,8 +50,12 @@ struct ModalView: View {
             
             // Botão "Salvar"
             Button(action: {
-                addTask(newTask, newPriority)  // Chama a função de adicionar a tarefa com prioridade
-                showModal = false // Fecha o modal
+                if newTask.isEmpty {
+                    showAlert = true // Se o campo de tarefa estiver vazio, exibe o alerta
+                } else {
+                    addTask(newTask, newPriority)  // Chama a função de adicionar a tarefa com prioridade
+                    showModal = false // Fecha o modal
+                }
             }) {
                 Text("Salvar")
                     .font(.headline)
@@ -78,11 +84,20 @@ struct ModalView: View {
             
         }
         .padding()
+        // Alerta só será exibido quando o botão "Salvar" for clicado e o campo estiver vazio
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Campo obrigatório"),
+                message: Text("Por favor, insira uma tarefa antes de salvar."),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(newTask: .constant(""), newPriority: .constant("Tranquilo"), showModal: .constant(true), addTask: { _, _ in })
+        ModalView(newTask: .constant(""), newPriority: .constant("Baixa"), showModal: .constant(true), addTask: { _, _ in })
     }
 }
+

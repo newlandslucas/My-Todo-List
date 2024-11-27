@@ -17,22 +17,38 @@ struct TodoItem: Identifiable {
 
 struct HomeView: View {
     @State private var newTask: String = "" // Texto da nova tarefa
-    @State private var newPriority: String = "Tranquilo" // Prioridade da nova tarefa
+    @State private var newPriority: String = "Baixa" // Prioridade da nova tarefa
     @State private var todoItems: [TodoItem] = [] // Lista de tarefas
     @State private var showModal: Bool = false // Controle de exibição do modal
+    
+    // Função para calcular o número de tarefas não concluídas
+    private var pendingTasksCount: Int {
+        todoItems.filter { !$0.isCompleted }.count
+    }
     
     var body: some View {
         NavigationView {
             VStack {
-                
-                HStack {
-                    Text("Minha Tarefas")
-                        .font(.title)
-                        .fontWeight(.semibold)
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("Minhas Tarefas")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                    }
+                    .padding()
                     
-                    Spacer()
+                    // Exibição do contador de tarefas em aberto
+                    HStack {
+                        Text("Tarefas em aberto: \(pendingTasksCount)")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
                 }
-                .padding()
                 
                 // Lista de tarefas
                 List {
@@ -83,9 +99,9 @@ struct HomeView: View {
                 }) {
                     Image(systemName: "pencil")
                         .font(.system(size: 30))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(.systemBackground))
                         .frame(width: 60, height: 60)
-                        .background(Circle().fill(Color.black))
+                        .background(Circle().fill())
                         .shadow(radius: 10)
                 }
                 .padding()
@@ -99,6 +115,8 @@ struct HomeView: View {
                 }
             }
         }
+        .background(Color(.systemBackground))
+        .foregroundColor(Color(.label))
     }
     
     // Função para adicionar uma nova tarefa
@@ -133,6 +151,7 @@ struct HomeView: View {
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
