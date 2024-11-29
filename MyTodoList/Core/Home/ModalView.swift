@@ -24,9 +24,18 @@ struct ModalView: View {
                     .fontWeight(.bold)
                 
                 Spacer()
+                
+                // Ícone de "X" para fechar o modal
+                Button(action: {
+                    showModal = false // Fecha o modal
+                }) {
+                    Image(systemName: "x.circle.fill") // Ícone de "X"
+                        .font(.title)
+                        .foregroundColor(.gray)
+                }
             }
             
-            TextField("Escreva sua nota...", text: $newTask)
+            TextField("Escreva sua tarefa...", text: $newTask)
                 .padding()
                 .background(Color.gray.opacity(0.2).cornerRadius(10))
                 .foregroundColor(.black)
@@ -48,43 +57,29 @@ struct ModalView: View {
             
             Spacer()
             
-            // Botão "Salvar"
-            Button(action: {
-                if newTask.isEmpty {
-                    showAlert = true // Se o campo de tarefa estiver vazio, exibe o alerta
-                } else {
-                    addTask(newTask, newPriority)  // Chama a função de adicionar a tarefa com prioridade
-                    showModal = false // Fecha o modal
+            // Mostrar o botão "Salvar" somente se newTask não estiver vazio
+            if !newTask.isEmpty {
+                Button(action: {
+                    if newTask.isEmpty {
+                        showAlert = true // Se o campo de tarefa estiver vazio, exibe o alerta
+                    } else {
+                        addTask(newTask, newPriority)  // Chama a função de adicionar a tarefa com prioridade
+                        showModal = false // Fecha o modal
+                    }
+                }) {
+                    Text("Salvar")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black)
+                        .cornerRadius(8)
                 }
-            }) {
-                Text("Salvar")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(8)
+                .padding(.horizontal, 10)
             }
-            .padding(.horizontal, 10)
-            .disabled(newTask.isEmpty)  // Desabilita o botão quando o campo de texto estiver vazio
-            
-            // Botão "Cancelar"
-            Button(action: {
-                showModal = false // Fecha o modal sem salvar
-            }) {
-                Text("Cancelar")
-                    .font(.headline)
-                    .foregroundColor(.red)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(8)
-            }
-            .padding(.horizontal, 10)
             
         }
         .padding()
-        // Alerta só será exibido quando o botão "Salvar" for clicado e o campo estiver vazio
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Campo obrigatório"),
@@ -100,4 +95,5 @@ struct ModalView_Previews: PreviewProvider {
         ModalView(newTask: .constant(""), newPriority: .constant("Baixa"), showModal: .constant(true), addTask: { _, _ in })
     }
 }
+
 

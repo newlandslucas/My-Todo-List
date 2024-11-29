@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 struct LoginView: View {
     var body: some View {
@@ -27,32 +30,71 @@ struct LoginView: View {
                         
                         Spacer()
                     }
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
                     
-                    Text("O seu app de notas com temática da série Game of Thrones.")
-                        .foregroundColor(.gray)
-                        .fontWeight(.medium)
+                    HStack {
+                        Text("O seu app de notas.")
+                            .foregroundColor(.gray)
+                            .fontWeight(.medium)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    
+                    
                 }
                 .frame(maxHeight: .infinity)
                 
-
+                
                 Button {
-                    print("clicou para logar!")
+                    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+                    let config = GIDConfiguration(clientID: clientID)
+                    GIDSignIn.sharedInstance.configuration = config
+
+                    // Start the sign in flow!
+                    GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                      guard error == nil else {
+                        return
+                      }
+
+                      guard let user = result?.user,
+                        let idToken = user.idToken?.tokenString
+                      else {
+                          return
+                      }
+
+                      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                     accessToken: user.accessToken.tokenString)
+
+                        Auth.auth().signIn(with: credential) { result, error in
+                            guard error == nil else {
+                            // MARK: - Manage Error
+                                //
+                                return
+                            }
+                            print("logado!")
+                            UserDefaults.standard.set(true, forKey: "signIn")
+                        }
+                    }
                 } label: {
-                    Text("Acessar sua conta")
-                        .fontWeight(.medium)
-                        .padding(.vertical, 15)
-                        .frame(maxWidth: 200)
-                        .padding(.horizontal, 65)
-                        .background(Color(.label))
-                        .foregroundColor(Color(.systemBackground))
-                        .border(Color(.label), width: 1)
-                        .cornerRadius(12)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color(.label), lineWidth: 1)
-                    )
+                    HStack(spacing: 10) { // Ajuste o espaçamento entre a imagem e o texto
+                        Image("Google")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 24, height: 24) // Tamanho ajustado para ícone
+                            .padding(.leading, 0) // Adiciona espaço interno à esquerda
+                        
+                        Text("Fazer login com o Google")
+                            .fontWeight(.medium)
+                            .foregroundColor(Color(.systemBackground)) // Cor do texto
+                            .padding(.vertical, 15)
+                            .frame(maxWidth: .infinity, alignment: .center) // Garante alinhamento central
+                    }
+                    .padding(.horizontal, 55)
+                    .background(Color(.label))
+                    .cornerRadius(12)
                 }
             }
 

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@main
 struct MyTodoListApp: App {
     var body: some Scene {
         WindowGroup {

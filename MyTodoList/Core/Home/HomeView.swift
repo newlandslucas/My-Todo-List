@@ -87,6 +87,7 @@ struct HomeView: View {
                         .cornerRadius(18)
                     }
                     .onDelete(perform: deleteItem)
+                    .transition(.move(edge: .bottom)) // Animação para tarefas novas com um movimento vindo de baixo
                 }
                 .listStyle(PlainListStyle())
                 .padding(.top)
@@ -95,25 +96,31 @@ struct HomeView: View {
             .navigationBarItems(trailing: EditButton())
             .overlay(
                 Button(action: {
-                    showModal = true // Exibir o modal
+                    withAnimation(.spring().speed(0.5)) { // Diminuindo a velocidade da animação
+                        showModal = true // Exibir o modal com animação
+                    }
                 }) {
                     Image(systemName: "pencil")
                         .font(.system(size: 30))
                         .foregroundColor(Color(.systemBackground))
-                        .frame(width: 60, height: 60)
+                        .frame(width: 45, height: 45)
                         .background(Circle().fill())
                         .shadow(radius: 10)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing), alignment: .bottomTrailing
             )
-            // Modal para adicionar nova tarefa
+            // Modal para adicionar nova tarefa com animação
             .sheet(isPresented: $showModal) {
                 // Chamando a ModalView
                 ModalView(newTask: $newTask, newPriority: $newPriority, showModal: $showModal) { task, priority in
-                    addTask(task: task, priority: priority) // Adiciona a tarefa e fecha o modal
+                    withAnimation(.easeIn(duration: 0.5)) { // Animação de entrada suave para a nova tarefa
+                        addTask(task: task, priority: priority) // Adiciona a tarefa e fecha o modal
+                    }
                 }
+                .transition(.move(edge: .bottom)) // Animação de transição do modal (movimento de baixo para cima)
             }
+            .animation(.easeInOut(duration: 1.0), value: showModal) // Duração maior para suavizar a transição
         }
         .background(Color(.systemBackground))
         .foregroundColor(Color(.label))
@@ -129,7 +136,9 @@ struct HomeView: View {
     
     // Função para excluir uma tarefa
     func deleteItem(at offsets: IndexSet) {
-        todoItems.remove(atOffsets: offsets)
+        withAnimation { // Animação de remoção
+            todoItems.remove(atOffsets: offsets)
+        }
     }
     
     // Função para alternar o status de conclusão da tarefa
@@ -142,19 +151,21 @@ struct HomeView: View {
     // Função para determinar a cor da barra de prioridade com base no nível
     private func priorityColor(for priority: String) -> Color {
         switch priority {
-        case "Médio":
+        case "Média":
             return Color.yellow
         case "Requer Atenção":
             return Color.red
         default:
-            return Color.green
+            return Color.green // Baixa
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
 }
+
+
+
