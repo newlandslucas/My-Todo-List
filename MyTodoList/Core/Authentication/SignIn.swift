@@ -17,7 +17,7 @@ struct SignIn: App {
             if !isSignIn {
                 LoginView()
             } else {
-                HomeView()
+                ContentView()
             }
         }
     }

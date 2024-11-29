@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9420EF8C2CFA500E007395C0 /* FireAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420EF8B2CFA500E007395C0 /* FireAuth.swift */; };
 		942A2BD52CFA45CA00A88A1E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 942A2BD42CFA45CA00A88A1E /* FirebaseAuth */; };
 		942A2BD82CFA460700A88A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942A2BD72CFA460700A88A1E /* AppDelegate.swift */; };
 		942A2BDA2CFA467800A88A1E /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942A2BD92CFA467800A88A1E /* SignIn.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9420EF8B2CFA500E007395C0 /* FireAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAuth.swift; sourceTree = "<group>"; };
 		942A2BD72CFA460700A88A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		942A2BD92CFA467800A88A1E /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		942A2BE02CFA47B500A88A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				942A2BD72CFA460700A88A1E /* AppDelegate.swift */,
 				942A2BE32CFA4B3400A88A1E /* +View.swift */,
+				9420EF8B2CFA500E007395C0 /* FireAuth.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				943BBBEA2CF6549C000F8DAD /* LoginView.swift in Sources */,
 				943BBBEE2CF65518000F8DAD /* RegistrationView.swift in Sources */,
 				942A2BE42CFA4B3400A88A1E /* +View.swift in Sources */,
+				9420EF8C2CFA500E007395C0 /* FireAuth.swift in Sources */,
 				943BBBEC2CF654F4000F8DAD /* AcessView.swift in Sources */,
 				942A2BD82CFA460700A88A1E /* AppDelegate.swift in Sources */,
 				943BBBD22CF65391000F8DAD /* MyTodoListApp.swift in Sources */,

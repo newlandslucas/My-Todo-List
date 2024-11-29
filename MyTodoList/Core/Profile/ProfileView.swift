@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 struct ProfileView: View {
     var body: some View {
@@ -21,27 +24,26 @@ struct ProfileView: View {
             Spacer()
             
             VStack(spacing: 15) {
-                HStack {
-                    Text("Notas arquivadas")
-                    
-                    Spacer()
-                    
-                    Image(systemName: "book.pages.fill")
-                        .font(.system(size: 25))
-
-                }
-                Divider()
                 
                 HStack {
-                    Text("Sair do app")
                     
-                    Spacer()
-                    
-                    Image(systemName: "door.left.hand.open")
-                        .font(.system(size: 25))
+                    Button {
+                        FireAuth.share.SignOut(presenting: getRootViewController()) { error in
+                            print("Error: \(error)")
+                        }
+                    } label: {
+                        Text("Sair do app")
+                        
+                        Spacer()
+                        
+                        Image(systemName: "door.left.hand.open")
+                            .font(.system(size: 25))
 
-                }
-                .foregroundColor(.red)
+                    }
+                    .foregroundColor(.red)
+                    }
+
+
                 Divider()
             }
             

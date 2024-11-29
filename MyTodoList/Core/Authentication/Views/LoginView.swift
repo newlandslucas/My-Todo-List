@@ -11,113 +11,90 @@ import GoogleSignIn
 import Firebase
 
 struct LoginView: View {
+    // Estado para controlar o texto do título
+    @State private var titleText = ""
+    private let fullTitle = "My-Todo App"
+    
     var body: some View {
-        VStack(spacing: 100) {
-            Image("dragon")
+        
+        HStack {
+            Image(systemName: "pencil.and.list.clipboard")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 80)
-            
-            //MARK: - Title and SubTitle Label's
-            
-            VStack(spacing: 100) {
-                
-                VStack {
-                    HStack {
-                        Text("Minhas Notas\nTodo App")
-                            .font(.largeTitle)
-                            .fontWeight(.heavy)
-                        
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
-                    
-                    HStack {
-                        Text("O seu app de notas.")
-                            .foregroundColor(.gray)
-                            .fontWeight(.medium)
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    
-                    
-                }
-                .frame(maxHeight: .infinity)
-                
-                
-                Button {
-                    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
-                    let config = GIDConfiguration(clientID: clientID)
-                    GIDSignIn.sharedInstance.configuration = config
-
-                    // Start the sign in flow!
-                    GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
-                      guard error == nil else {
-                        return
-                      }
-
-                      guard let user = result?.user,
-                        let idToken = user.idToken?.tokenString
-                      else {
-                          return
-                      }
-
-                      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                                     accessToken: user.accessToken.tokenString)
-
-                        Auth.auth().signIn(with: credential) { result, error in
-                            guard error == nil else {
-                            // MARK: - Manage Error
-                                //
-                                return
-                            }
-                            print("logado!")
-                            UserDefaults.standard.set(true, forKey: "signIn")
+                .frame(width: 35, height: 35)
+        }
+        
+        Spacer()
+        
+        VStack {
+            // Animação do título
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(titleText)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .onAppear {
+                            startTypingAnimation()
                         }
-                    }
-                } label: {
-                    HStack(spacing: 10) { // Ajuste o espaçamento entre a imagem e o texto
-                        Image("Google")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 24, height: 24) // Tamanho ajustado para ícone
-                            .padding(.leading, 0) // Adiciona espaço interno à esquerda
-                        
-                        Text("Fazer login com o Google")
-                            .fontWeight(.medium)
-                            .foregroundColor(Color(.systemBackground)) // Cor do texto
-                            .padding(.vertical, 15)
-                            .frame(maxWidth: .infinity, alignment: .center) // Garante alinhamento central
-                    }
-                    .padding(.horizontal, 55)
-                    .background(Color(.label))
-                    .cornerRadius(12)
-                }
-            }
 
-            Spacer()
-                        
-            HStack(alignment: .center, spacing: 5) {
-                Text("Ainda não tem uma conta?")
-                
-                Button {
-                    print("criar conta")
-                } label: {
-                    Text("Crie sua conta")
-                        .foregroundColor(.cyan)
+                    Text("O seu app de notas diário.")
                 }
 
                 Spacer()
             }
-            .font(.footnote)
+            
+            Spacer()
+
+            // Botão de login
+            Button {
+                FireAuth.share.signInWithGoogle(presenting: getRootViewController()) { error in
+                    print("Error: \(error)")
+                }
+            } label: {
+                HStack(spacing: 10) {
+                    Image("Google")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+
+                    Text("Fazer login com o Google")
+                        .fontWeight(.medium)
+                        .padding(.vertical, 15)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                .padding(.horizontal, 55)
+                .background(Color(.systemBackground))
+                .foregroundColor(Color(.label))
+                .border(Color(.label))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12) // Borda arredondada
+                        .stroke(Color(.label), lineWidth: 1) // Cor e largura da borda
+                )
+                .cornerRadius(12)
+            }
+
+            Spacer()
         }
-        .frame(maxWidth: .infinity)
         .padding()
         .background(Color(.systemBackground))
         .foregroundColor(Color(.label))
+    }
+    
+    // Função para iniciar a animação em loop
+    private func startTypingAnimation() {
+        titleText = ""
+        for (index, letter) in fullTitle.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 0.1) {
+                withAnimation {
+                    titleText.append(letter)
+                }
+            }
+        }
+        
+        let totalDuration = Double(fullTitle.count) * 0.3 + 2.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + totalDuration) {
+            startTypingAnimation()
+        }
     }
 }
 
