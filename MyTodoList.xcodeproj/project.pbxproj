@@ -32,6 +32,10 @@
 /* Begin PBXFileReference section */
 		9420EF8B2CFA500E007395C0 /* FireAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireAuth.swift; sourceTree = "<group>"; };
 		9420EF8E2CFAB0A8007395C0 /* EditTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTask.swift; sourceTree = "<group>"; };
+		9420EF992CFAB53A007395C0 /* print1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = print1.png; sourceTree = "<group>"; };
+		9420EF9A2CFAB53A007395C0 /* print3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = print3.png; sourceTree = "<group>"; };
+		9420EF9B2CFAB53A007395C0 /* print4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = print4.png; sourceTree = "<group>"; };
+		9420EF9C2CFAB53A007395C0 /* print2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = print2.png; sourceTree = "<group>"; };
 		942A2BD72CFA460700A88A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		942A2BD92CFA467800A88A1E /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		942A2BE02CFA47B500A88A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +77,17 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		9420EF982CFAB534007395C0 /* Prints */ = {
+			isa = PBXGroup;
+			children = (
+				9420EF992CFAB53A007395C0 /* print1.png */,
+				9420EF9C2CFAB53A007395C0 /* print2.png */,
+				9420EF9A2CFAB53A007395C0 /* print3.png */,
+				9420EF9B2CFAB53A007395C0 /* print4.png */,
+			);
+			path = Prints;
+			sourceTree = "<group>";
+		};
 		942A2BD62CFA45E800A88A1E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +117,7 @@
 		943BBBD02CF65391000F8DAD /* MyTodoList */ = {
 			isa = PBXGroup;
 			children = (
+				9420EF982CFAB534007395C0 /* Prints */,
 				942A2BE12CFA4A1400A88A1E /* GoogleService-Info.plist */,
 				942A2BE02CFA47B500A88A1E /* Info.plist */,
 				942A2BD62CFA45E800A88A1E /* Helper */,
