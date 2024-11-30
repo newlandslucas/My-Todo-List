@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ModalView: View {
     @Binding var newTask: String
-    @Binding var newPriority: String // Prioridade da nova tarefa
+    @Binding var newPriority: String
     @Binding var showModal: Bool
-    var addTask: (String, String) -> Void  // Função para adicionar a tarefa com prioridade
+    var addTask: (String, String) -> Void
     
     @State private var showAlert: Bool = false
     
@@ -25,11 +25,10 @@ struct ModalView: View {
                 
                 Spacer()
                 
-                // Ícone de "X" para fechar o modal
                 Button(action: {
-                    showModal = false // Fecha o modal
+                    showModal = false
                 }) {
-                    Image(systemName: "x.circle.fill") // Ícone de "X"
+                    Image(systemName: "x.circle.fill")
                         .font(.title)
                         .foregroundColor(.gray)
                 }
@@ -38,9 +37,8 @@ struct ModalView: View {
             TextField("Escreva sua tarefa...", text: $newTask)
                 .padding()
                 .background(Color.gray.opacity(0.2).cornerRadius(10))
-                .foregroundColor(.black)
+                .foregroundColor(Color(.label))
             
-            // Seletor de prioridade
             VStack(alignment: .leading) {
                 Text("Prioridade")
                     .font(.headline)
@@ -51,20 +49,19 @@ struct ModalView: View {
                     Text("Média").tag("Média")
                     Text("Requer Atenção").tag("Requer Atenção")
                 }
-                .pickerStyle(SegmentedPickerStyle()) // Estilo de picker segmentado
+                .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
             }
             
             Spacer()
             
-            // Mostrar o botão "Salvar" somente se newTask não estiver vazio
             if !newTask.isEmpty {
                 Button(action: {
                     if newTask.isEmpty {
-                        showAlert = true // Se o campo de tarefa estiver vazio, exibe o alerta
+                        showAlert = true
                     } else {
-                        addTask(newTask, newPriority)  // Chama a função de adicionar a tarefa com prioridade
-                        showModal = false // Fecha o modal
+                        addTask(newTask, newPriority)
+                        showModal = false
                     }
                 }) {
                     Text("Salvar")
@@ -77,7 +74,6 @@ struct ModalView: View {
                 }
                 .padding(.horizontal, 10)
             }
-            
         }
         .padding()
         .alert(isPresented: $showAlert) {
@@ -95,5 +91,3 @@ struct ModalView_Previews: PreviewProvider {
         ModalView(newTask: .constant(""), newPriority: .constant("Baixa"), showModal: .constant(true), addTask: { _, _ in })
     }
 }
-
-
