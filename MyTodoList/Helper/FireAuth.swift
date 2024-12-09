@@ -21,7 +21,6 @@ struct FireAuth {
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
 
-        // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: presenting) { result, error in
             guard error == nil else {
                 completion(error)

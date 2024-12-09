@@ -71,7 +71,7 @@ struct HomeView: View {
                             VStack(alignment: .leading) {
                                 Text(item.task)
                                     .strikethrough(item.isCompleted, color: .gray)
-                                    .foregroundColor(item.isCompleted ? .gray : .black)
+                                    .foregroundColor(item.isCompleted ? .gray : Color(.label))
                                 
                                 Text("Prioridade: \(item.priority)")
                                     .font(.subheadline)
@@ -131,7 +131,11 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showEditModal) {
+            .sheet(isPresented: $showEditModal, onDismiss: {
+                if let index = todoItems.firstIndex(where: { $0.id == selectedTask.id }) {
+                    todoItems[index] = selectedTask
+                }
+            }) {
                 EditTaskView(
                     task: $selectedTask.task,
                     priority: $selectedTask.priority,
